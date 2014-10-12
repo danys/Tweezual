@@ -100,6 +100,7 @@ public class IntoWebsocketReader implements Runnable {
       }
       // Serialize
       JSONObject out = new JSONObject();
+      //This line might throw a JSONException if the coordinates key is not found => return null
       out.put("coordinates", tweet.get("coordinates"));
       out.put("geo", tweet.get("geo"));
       out.put("place", tweet.get("place"));
@@ -110,7 +111,7 @@ public class IntoWebsocketReader implements Runnable {
     } catch (JSONException e) {
       e.printStackTrace();
 
-      return "";
+      return null;
     }
   }
 
